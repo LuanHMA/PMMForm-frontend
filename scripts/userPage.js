@@ -1,5 +1,5 @@
 const userText = document.getElementById("userText");
-const url = "https://pmmform-backend.onrender.com";
+const url = "http://localhost:3000";
 
 function getUserData() {
   axios

@@ -1,8 +1,9 @@
 const userText = document.getElementById("userText");
+const url = "https://pmmform-backend.onrender.com";
 
 function getUserData() {
   axios
-    .get("http://localhost:3000/")
+    .get(url)
     .then((response) => {
       userText.innerHTML = `<b>Usuário logado:</b> ${response.data[0].email}`;
     })

@@ -1,7 +1,7 @@
 const userEmail = document.getElementById("userEmail");
 const userPassword = document.getElementById("userPassword");
 const signInButton = document.getElementById("signInButton");
-const url = "http://localhost:3000/";
+const url = "http://localhost:3000";
 
 (() => {
   userEmail.focus();

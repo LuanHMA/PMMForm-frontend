@@ -1,6 +1,7 @@
 const userEmail = document.getElementById("userEmail");
 const userPassword = document.getElementById("userPassword");
 const signInButton = document.getElementById("signInButton");
+const url = "https://pmmform-backend.onrender.com";
 
 (() => {
   userEmail.focus();
@@ -13,7 +14,7 @@ function removeStyle() {
 
 function loginUser() {
   axios
-    .post("http://localhost:3000/signIn", {
+    .post(`${url}/signIn`, {
       email: userEmail.value,
       password: userPassword.value,
     })

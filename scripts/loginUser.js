@@ -32,7 +32,7 @@ function loginUser() {
         return;
       } else {
         //USUARIO LOGADO
-        window.location.href = "/pages/userPage.html";
+        window.location.href = "PMMForm-frontend-master/pages/userPage.html";
       }
     })
     .catch((error) => {

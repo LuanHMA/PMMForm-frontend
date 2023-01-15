@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../style/style.css" />
+    <title>PMM - Cadastro</title>
+  </head>
+  <body>
+    <main class="container">
+      <div class="left-content">
+        <img
+          src="../images/logoDesktop.png"
+          alt="Logotipo da Prefeitura de Mesquita"
+        />
+      </div>
+      <div class="right-content">
+        <h1 class="content-title">Novo usuário</h1>
+        <a href="../index.html" class="home-link">
+          <img src="../images/arrow-circle-left.svg" alt="Voltar" />
+        </a>
+
+        <div class="content-mobile">
+          <img
+            src="../images/logoMobile.png"
+            alt="Logotipo da Prefeitura de Mesquita"
+          />
+        </div>
+
+        <form>
+          <div class="field">
+            <label for="userEmail">Email</label>
+            <input
+              type="email"
+              id="userEmail"
+              name="email"
+              placeholder="seuemail@email.com"
+            />
+          </div>
+          <div class="field">
+            <label for="userPassword">Senha</label>
+            <input
+              type="password"
+              id="userPassword"
+              name="password"
+              placeholder="Digite sua senha"
+            />
+            <small>Sua senha deve conter no minímo 4 cateracteres</small>
+          </div>
+          <div class="field field-buttons">
+            <button id="signUpButton">Cadastrar</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </body>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script src="../scripts/registerUser.js"></script>
+</html>

@@ -1,0 +1,231 @@
+:root {
+  --bgLogo: #3c276a;
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Open Sans", sans-serif;
+}
+body {
+  display: grid;
+  place-items: center;
+  background: rgb(66, 39, 124);
+  background: linear-gradient(
+    82deg,
+    rgba(66, 39, 124, 1) 0%,
+    rgba(110, 65, 209, 1) 92%
+  );
+  height: 100vh;
+  width: 100%;
+}
+
+@keyframes ErroAnimation {
+  15% {
+    -webkit-transform: translateX(5px);
+    transform: translateX(5px);
+  }
+  30% {
+    -webkit-transform: translateX(-5px);
+    transform: translateX(-5px);
+  }
+  50% {
+    -webkit-transform: translateX(3px);
+    transform: translateX(3px);
+  }
+  65% {
+    -webkit-transform: translateX(-3px);
+    transform: translateX(-3px);
+  }
+  80% {
+    -webkit-transform: translateX(2px);
+    transform: translateX(2px);
+  }
+  100% {
+    -webkit-transform: translateX(0);
+    transform: translateX(0);
+  }
+}
+.animateError {
+  animation: ErroAnimation 0.5s ease;
+}
+/* CONTAINER */
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  width: 80%;
+  max-width: 720px;
+  position: relative;
+  background: #fff;
+  border-radius: 5px;
+}
+.container .home-link img {
+  width: 40px;
+}
+.container .home-link {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.container .content-mobile {
+  display: none;
+  width: 160px;
+  position: relative;
+  top: 10px;
+}
+/* LEFT CONTENT */
+.container .left-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--bgLogo);
+}
+/* RIGHT CONTENT */
+.container .right-content {
+  display: grid;
+  place-items: center;
+}
+.container .right-content .content-title {
+  color: var(--bgLogo);
+  margin-top: 30px;
+}
+
+.container .right-content form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 30px;
+  width: 70%;
+}
+/* FORM */
+.field {
+  width: 100%;
+  margin: 10px auto;
+  display: flex;
+  flex-direction: column;
+}
+.field small {
+  color: rgba(0, 0, 0, 0.514);
+  margin-top: 4px;
+}
+.field label {
+  font-size: 1em;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.field input {
+  font-weight: 400;
+  padding: 10px;
+  font-size: 1em;
+  border-radius: 8px;
+  border: none;
+  background: rgb(241, 237, 252);
+  outline: none;
+}
+
+.field-buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.field-buttons button {
+  border: none;
+  outline: none;
+  background-color: var(--bgLogo);
+  padding: 10px;
+  color: #fff;
+  font-size: 0.9em;
+  width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.field-buttons button:hover {
+  opacity: 0.9;
+}
+.field-buttons a {
+  margin-top: 10px;
+  font-size: 0.9em;
+}
+
+/* USERPAGE */
+main.userPage {
+  background: #fff;
+  width: 90%;
+  padding: 20px;
+  max-width: 500px;
+}
+.userContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.userContent h1 {
+  font-size: 1.3em;
+  margin-bottom: 10px;
+}
+
+.userContent a {
+  margin-top: 20px;
+  border: none;
+  background-color: var(--bgLogo);
+  padding: 10px;
+  color: #fff;
+  font-size: 0.9em;
+  width: 100%;
+  max-width: 100px;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  text-decoration: none;
+}
+.userContent a:hover {
+  opacity: 0.9;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 768px) {
+  body {
+    font-size: 0.9em;
+  }
+  .container {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+    margin-top: 25px;
+  }
+  .container .home-link {
+    position: absolute;
+    top: -50px;
+    left: 0px;
+    background: white;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+
+  .container .content-mobile {
+    display: block;
+  }
+  .container .content-mobile img {
+    width: 100%;
+    object-fit: cover;
+  }
+  .container .left-content {
+    display: none;
+  }
+  .container .right-content form {
+    width: 80%;
+    max-width: 400px;
+    margin-top: 10px;
+  }
+  .container .right-content .content-title {
+    font-size: 1.9em;
+  }
+}

@@ -1,27 +1,44 @@
 const signUpButton = document.getElementById("signUpButton");
 const userEmail = document.getElementById("userEmail");
 const userPassword = document.getElementById("userPassword");
-const url = "http://localhost:3000";
+const passwordConfirm = document.getElementById("userPasswordConfirm");
 
 (() => {
   userEmail.focus();
 })();
 
-function removeStyle() {
+const isFetching = (value) => {
+  if (value) {
+    signUpButton.disabled = true;
+    signUpButton.innerHTML = "<div class='loader'></div>";
+  } else if (!value) {
+    signUpButton.disabled = false;
+    signUpButton.innerHTML = "Cadastrar";
+  }
+};
+
+const removeStyle = () => {
   userEmail.classList.remove("animateError");
   userPassword.classList.remove("animateError");
-}
+};
 
-function registerUser() {
+const registerUser = () => {
+  // isFetching(true);
+  console.log("Executou");
+
   axios
-    .post(`${url}/signUp`, {
+    .post("http://localhost:3000/signUp", {
       email: userEmail.value,
       password: userPassword.value,
     })
     .then((response) => {
+      console.log(response);
       //Requisiçaõ deu certo
       if (response.data.error) {
+        //BACKEND RETORNOU UM
         alertError(response.data.error);
+        userEmail.value = "";
+        userPassword.value = "";
       } else {
         //USUARIO CADASTRADO
         alert("Usuário cadastrado com sucesso!");
@@ -33,46 +50,53 @@ function registerUser() {
       alertError("Houve um problema interno ao registra-se, desculpe!");
       console.log(error);
     });
-}
+  // .finally(() => isFetching(false));
+};
 
-function alertError(error) {
+const alertError = (error) => {
   removeStyle();
   switch (error) {
-    case "Senha incorreta!":
+    case "As senhas digitadas não batem!":
+      passwordConfirm.value = "";
+      passwordConfirm.classList.add("animateError");
       userPassword.value = "";
       userPassword.focus();
       userPassword.classList.add("animateError");
-
       break;
-    case "Usuário não encontrado!":
-      userEmail.value = "";
-      userEmail.focus();
-      userEmail.classList.add("animateError");
+    case "Sua senha precisa ter mais de 4 digitos":
+      userPassword.value = "";
+      userPassword.focus();
+      userPassword.classList.add("animateError");
     default:
       break;
   }
   alert(error);
-}
+};
 
-function fieldValid() {
-  if (userEmail.value && userPassword.value) {
-    return true;
-  } else {
+const hasEmptyField = () => {
+  const passwordField = userPassword.value && passwordConfirm.value;
+  if (userEmail.value && passwordField) {
     return false;
+  } else {
+    return true;
   }
-}
+};
 
 signUpButton.addEventListener("click", (event) => {
   event.preventDefault();
-  if (!fieldValid()) {
+
+  //Validações antes de acionar a função de cadastro
+  if (hasEmptyField()) {
     if (!userEmail.value) {
       userEmail.focus();
     } else if (!userPassword.value) {
       userPassword.focus();
     }
-    alert("Preencha todos os campos por favor!");
+    alertError("Preencha todos os campos por favor!");
   } else if (userPassword.value.length < 5) {
-    alert("Sua senha precisa ter mais de 4 digitos");
+    alertError("Sua senha precisa ter mais de 4 digitos");
+  } else if (passwordConfirm.value !== userPassword.value) {
+    alertError("As senhas digitadas não batem!");
   } else {
     registerUser();
   }

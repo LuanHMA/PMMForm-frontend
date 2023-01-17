@@ -1,13 +1,12 @@
 const userText = document.getElementById("userText");
-const url = "http://localhost:3000";
 
-function getUserData() {
+const getUserData = () => {
   axios
-    .get(url)
+    .get("http://localhost:3000/")
     .then((response) => {
       userText.innerHTML = `<b>Usuário logado:</b> ${response.data[0].email}`;
     })
     .catch((error) => {
       console.log(error);
     });
-}
+};

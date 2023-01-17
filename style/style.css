@@ -46,9 +46,29 @@ body {
     transform: translateX(0);
   }
 }
+@keyframes loading {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.loader {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  animation: loading 1s linear infinite;
+  background-color: #c8c2d5;
+  border-top: 4px solid rgb(200 194 213);
+  border-right: 4px solid rgb(155 152 152);
+  border-bottom: 4px solid rgb(155 152 152);
+  border-left: 4px solid rgb(155 152 152);
+}
 .animateError {
   animation: ErroAnimation 0.5s ease;
 }
+
 /* CONTAINER */
 .container {
   display: grid;
@@ -144,8 +164,15 @@ body {
   cursor: pointer;
   transition: all 0.5s ease;
 }
+
 .field-buttons button:hover {
   opacity: 0.9;
+}
+.field-buttons button:disabled {
+  background-color: #3c276a48;
+  cursor: not-allowed;
+  display: flex;
+  justify-content: center;
 }
 .field-buttons a {
   margin-top: 10px;

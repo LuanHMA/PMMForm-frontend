@@ -1,20 +1,33 @@
+// window.location.href = "pages/userPage.html";
+
 const userEmail = document.getElementById("userEmail");
 const userPassword = document.getElementById("userPassword");
 const signInButton = document.getElementById("signInButton");
-const url = "http://localhost:3000";
 
 (() => {
   userEmail.focus();
 })();
 
-function removeStyle() {
+const isFetching = (value) => {
+  if (value) {
+    signInButton.disabled = true;
+    signInButton.innerHTML = "<div class='loader'></div>";
+  } else if (!value) {
+    signInButton.disabled = false;
+    signInButton.innerHTML = "Cadastrar";
+  }
+};
+
+const removeStyle = () => {
   userEmail.classList.remove("animateError");
   userPassword.classList.remove("animateError");
-}
+};
 
-function loginUser() {
+const loginUser = () => {
+  isFetching(true);
+
   axios
-    .post(`${url}/signIn`, {
+    .post("http://localhost:3000/signIn", {
       email: userEmail.value,
       password: userPassword.value,
     })
@@ -39,10 +52,11 @@ function loginUser() {
       //Requisição deu errado
       alertError("Houve um problema interno ao logar-se, desculpe!");
       console.log(error);
-    });
-}
+    })
+    .finally(() => isFetching(false));
+};
 
-function alertError(error) {
+const alertError = (error) => {
   removeStyle();
   switch (error) {
     case "Senha incorreta!":
@@ -59,15 +73,15 @@ function alertError(error) {
       break;
   }
   alert(error);
-}
+};
 
-function fieldValid() {
+const fieldValid = () => {
   if (userEmail.value && userPassword.value) {
     return true;
   } else {
     return false;
   }
-}
+};
 
 signInButton.addEventListener("click", (event) => {
   event.preventDefault();
